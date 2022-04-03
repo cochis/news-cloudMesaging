@@ -1,0 +1,65 @@
+<div class="container" [style]="font">
+    <div class=" row mt-3 " style="background-color: white; border-radius: 50px;padding:25px">
+        <app-control (configuracion)="changeConfiguration( $event )"></app-control>
+
+    </div>
+    <div class="row mt-5" *ngIf="!ready">
+        <div class="col-12">
+            <div class="d-flex justify-content-center">
+                <div class="spinner-grow text-light" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-grow text-light" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-grow text-light" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-grow text-light" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-grow text-light" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class=" row mt-3" *ngIf="ready">
+
+        <div class="col-12    col-md-4   " *ngFor="let  item of articles">
+            <div class="card mt-5 mx-auto" style="width: 18rem;">
+                <img *ngIf="item.urlToImage" [src]="item.urlToImage" class="card-img-top" style="height: 150px;;"
+                    alt="...">
+                <img *ngIf="!item.urlToImage" src="/assets/slides/noticias1.jpg" style="height: 150px;;">
+                <div class="card-body" style="max-height: 350px !important">
+                    <h5 class="card-title">
+                        {{ (item.title.length>30)? (item.title | slice:0:30)+'..':(item.title) }}
+                    </h5>
+                    <label style="font-size: 9px;
+    font-weight: bold;; margin-top:-20px">{{item.publishedAt | date }}</label>
+                    <p class="card-text" *ngIf="item.content" style=" height: 80px;">
+                        {{ (item.content.length>100)? (item.content | slice:0:100)+'..':(item.content) }}
+
+                    </p>
+                    <p class="card-text" *ngIf="!item.content" style=" height: 80px;">
+
+
+                    </p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+        <div class="jumbotron jumbotron-fluid" *ngIf="articles.length == 0">
+            <div class="container " style="text-align: center;">
+                <h1 class="display-4" style="color:white">No hay noticias actuales</h1>
+                <button class="btn btn-primary" (click)="requestPermission()" *ngIf="token == null">¿Quieres que te
+                    avisemos
+                    cuando haya
+                    noticias?</button>
+                <button class="btn btn-danger" (click)="deleteToken()" *ngIf="token !== null">¿Quitar
+                    notificaciones?</button>
+            </div>
+        </div>
+    </div>
+</div>

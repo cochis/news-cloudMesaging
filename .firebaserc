@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "noticias-oarrs": {
+      "hosting": {
+        "news": [
+          "noticiasangular-oarrs"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "noticias-oarrs"
+  }
+}

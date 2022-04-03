@@ -1,0 +1,39 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="row">
+        <div class="col-12 col-sm-6 col-md-4">
+            <label for="categoria" class="form-label">Categoria</label>
+            <select class="form-control" id="categoria" formControlName="categoria">
+                <option *ngFor="let item of  categories" [value]="item.name">{{item.description}}</option>
+            </select>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4">
+            <label for="frecuencia" class="form-label">frecuencia</label>
+            <input type="text" class="form-control" min="30" max="3600" step="30" id="freccuencia"
+                placeholder="Frecuencia de recarga" formControlName="frecuencia">
+        </div>
+        <div class="col-12 col-sm-6 col-md-4">
+
+            <label for="font" class="form-label">Escoge tu fuente</label>
+            <select class="form-control" id="font" formControlName="font">
+                <option [style]="item.name" *ngFor="let item of  fonts" [value]="item.name">{{item.description}}
+                </option>
+            </select>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-sm-6 ">
+            <label for="birthday">Fecha inicial:</label>
+            <input class="form-control" id="font" formControlName="minDate" type="date" id="minDate" name="minDate">
+        </div>
+        <div class="col-12 col-sm-6 ">
+            <label for="birthday">Fecha final:</label>
+            <input class="form-control" id="font" formControlName="maxDate" type="date" id="maxDate" name="maxDate">
+        </div>
+
+    </div>
+    <div class="row center mt-3">
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
